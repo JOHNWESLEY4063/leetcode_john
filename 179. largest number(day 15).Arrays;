@@ -1,0 +1,28 @@
+import java.util.Arrays;
+import java.util.Comparator;
+
+class Solution{
+    public String largestNumber(int[] nums){
+        String[] strnums=new String[nums.length];
+        for(int i=0;i<nums.length;i++){
+            strnums[i]=Integer.toString(nums[i]);
+
+        }
+        Comparator<String> customComparator=new Comparator<String>(){
+            @Override
+            public int compare(String a,String b){
+                return (b+a).compareTo(a+b);
+            }
+        };
+        Arrays.sort(strnums, customComparator);
+        if (strnums[0].equals("0")){
+            return "0";
+        }
+        StringBuilder largestNumber =new StringBuilder();
+        for(String num : strnums){
+            largestNumber.append(num);
+        }
+        return largestNumber.toString();
+
+    }
+}
