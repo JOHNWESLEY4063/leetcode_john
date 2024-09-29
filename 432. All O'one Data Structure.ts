@@ -1,4 +1,4 @@
-aimport java.util.*;
+import java.util.*;
 
 class AllOne {
 
