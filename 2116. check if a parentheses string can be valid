@@ -1,0 +1,45 @@
+class Solution {
+    public boolean canBeValid(String s, String locked) {
+        int n = s.length();
+
+        // If the length is odd, it cannot be a valid parentheses string
+        if (n % 2 != 0) return false;
+
+        int openBalance = 0, closeBalance = 0;
+
+        // Left-to-right pass
+        for (int i = 0; i < n; i++) {
+            if (locked.charAt(i) == '1') {
+                if (s.charAt(i) == '(') {
+                    openBalance++;
+                } else {
+                    closeBalance++;
+                }
+            } else {
+                openBalance++;
+            }
+
+            if (closeBalance > openBalance) return false;
+        }
+
+        openBalance = 0;
+        closeBalance = 0;
+
+        // Right-to-left pass
+        for (int i = n - 1; i >= 0; i--) {
+            if (locked.charAt(i) == '1') {
+                if (s.charAt(i) == '(') {  // Corrected to `s.charAt(i)` instead of `locked.charAt(i)`
+                    openBalance++;
+                } else {
+                    closeBalance++;
+                }
+            } else {
+                closeBalance++;
+            }
+
+            if (openBalance > closeBalance) return false;
+        }
+
+        return true;
+    }
+}
