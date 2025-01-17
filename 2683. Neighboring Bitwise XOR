@@ -1,0 +1,11 @@
+class Solution {
+    public boolean doesValidArrayExist(int[] derived) {
+        int n=derived.length;
+
+        int xorsum=0;
+        for(int num: derived){
+            xorsum ^=num;
+        }
+        return xorsum==0;
+    }
+}
